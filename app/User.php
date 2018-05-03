@@ -9,21 +9,27 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'programa_id', 'mesa_id', 'estado'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rol(){
+      return $this->belongsTo('App/Rol');
+    }
+
+    public function programa(){
+      return $this->belongsTo('App/Programa');
+    }
+
+    public function mesa(){
+      return $this->belongsTo('App/Mesa');
+    }
+
 }
