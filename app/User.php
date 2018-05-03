@@ -32,4 +32,8 @@ class User extends Authenticatable
       return $this->belongsTo('App/Mesa');
     }
 
+    public function candidato(){
+      return $this->hasOne('App/Candidato');
+    }
+
 }

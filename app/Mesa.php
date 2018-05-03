@@ -17,7 +17,12 @@ class Mesa extends Model
       return $this->hasMany('App/User');
     }
 
+    public function votos(){
+      return $this->hasMany('App/Voto');
+    }
+
     public function lugar(){
       return $this->belongsTo('App/Lugar');
     }
+    
 }
