@@ -20,8 +20,12 @@
 
 	@include('template.modules.footer')
 
-	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}""></script>
-	<script type="text/javascript" src="{{ asset('js/materialize.js') }}""></script>
+	@yield('body', '')
+
+	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/materialize.js') }}"></script>
+
+	@yield('extrajs', '')
 
 	
 </body>

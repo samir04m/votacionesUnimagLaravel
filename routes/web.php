@@ -27,6 +27,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	    'uses' => 'UsuarioController@admin_index',
 		'as' => 'admin.index'
 	]);
+	Route::post('/registrar-usuario', [
+	    'uses' => 'UsuarioController@registar_usuario',
+		'as' => 'registrar.usuario'
+	]);
 });	
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {

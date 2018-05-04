@@ -52,11 +52,31 @@
 		</div>
 	</div>
 	<div class="row center"> 
-		Crear un Nuevo Usuario <a href="index.php?action=form-usuario" class="btn waves-effect blue btn-floating waves-light"><i class="material-icons">add</i></a>
+		Crear un Nuevo Usuario 
+		<a class="btn btn-floating waves-effect waves-light blue modal-trigger" href="#registro-usuario"><i class="material-icons">add</i></a>
 	</div>
 </div>
 
+@endsection
+
+@section('body')
+	@include('template.modules.usuario-registro-modal')
+@endsection
+
+@section('extrajs')
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $('.modal').modal();
+		    $('select').material_select();
+
+		    @if(isset($mensaje))
+		    	Materialize.toast('{{$mensaje}}', 3000, 'rounded')	
+		    @endif
+
+		 	// $('#registro-usuario').modal('open');
+		});
 
 
 
+	</script>
 @endsection
