@@ -14,11 +14,11 @@ class Voto extends Model
     ];
 
     public function candidato(){
-      return $this->belongsTo('App/Candidato');
+      return $this->belongsTo('App\Candidato');
     }
 
     public function mesa(){
-      return $this->belongsTo('App/Mesa');
+      return $this->belongsTo('App\Mesa');
     }
 
 }

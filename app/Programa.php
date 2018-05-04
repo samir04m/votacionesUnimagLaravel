@@ -14,10 +14,10 @@ class Programa extends Model
     ];
 
     public function usuarios(){
-      return $this->hasMany('App/User');
+      return $this->hasMany('App\User');
     }
 
     public function facultad(){
-      return $this->belongsTo('App/Facultad');
+      return $this->belongsTo('App\Facultad');
     }
 }

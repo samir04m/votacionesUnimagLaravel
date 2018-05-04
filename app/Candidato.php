@@ -14,15 +14,15 @@ class Candidato extends Model
     ];
 
     public function usuario(){
-      return $this->belongsTo('App/User');
+      return $this->belongsTo('App\User');
     }
 
     public function organo(){
-      return $this->belongsTo('App/Organo');
+      return $this->belongsTo('App\Organo');
     }
 
     public function votos(){
-      return $this->hasMany('App/Voto');
+      return $this->hasMany('App\Voto');
     }
 
 }
