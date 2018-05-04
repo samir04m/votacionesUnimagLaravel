@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 
-	<link rel="stylesheet" href="resources/css/materialize.css">
-	<link rel="stylesheet" href="resources/css/estilos.css">
+	<link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
 </head>
 <body id="index">
@@ -23,26 +23,38 @@
 								<hr><br>
 								<div class="input-field">
 									<input type="number" name="codigo" id="codigo" required="required">
-									<label for="codigo">Número de codigo:</label>
+									<label for="codigo">Codigo:</label>
 								</div>
 								<div class="input-field">
 									<input type="password" name="password" id="password" required="required">
 									<label for="password">Contraseña</label>
-								</div>						
-								
-							</div>
+								</div>
 
-							<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+								<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+	      						<label for="remember">Recordar mis datos</label>
+
+
+							</div>
+							
 
 							<div class="card-action center-align purple lighten-4">
 								<button type="submit" name='submit' value="Submit" class="btn btn-large waves-effect waves-light purple hoverable" id="btnLogin">Ingresar</button>
-								<a class="" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                                    
 							</div>
 						</form>
 
 					</div>
+					<!-- <div class="card-panel grey lighten-4 z-depth-4 hoverable">
+						<a class="" href="{{ route('password.request') }}">	
+							Olvidastes tu contraseña?
+                        </a>			
+					</div> -->
+					@if ($errors->has('codigo'))
+						<div class="card-panel red white-text">
+                            <strong>{{ $errors->first('codigo') }}</strong>
+							
+						</div>
+                    @endif
 						
 				</div>
 			</div>
@@ -59,13 +71,13 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resources/js/materialize.js"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/materialize.js') }}"></script>
 
 	<script type="text/javascript">
 		$(function(){
-			$('#codigo').val("2018110100");	
-			$('#password').val("0000");	
+			$('#codigo').val("2010114010");	
+			$('#password').val("1234");	
 		});
 	</script>
 
