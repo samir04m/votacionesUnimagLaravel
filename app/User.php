@@ -21,19 +21,19 @@ class User extends Authenticatable
     ];
 
     public function rol(){
-      return $this->belongsTo('App/Rol');
+      return $this->belongsTo('App\Rol');
     }
 
     public function programa(){
-      return $this->belongsTo('App/Programa');
+      return $this->belongsTo('App\Programa');
     }
 
     public function mesa(){
-      return $this->belongsTo('App/Mesa');
+      return $this->belongsTo('App\Mesa');
     }
 
     public function candidato(){
-      return $this->hasOne('App/Candidato');
+      return $this->hasOne('App\Candidato');
     }
 
 }

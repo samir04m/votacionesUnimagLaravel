@@ -8,6 +8,17 @@ section {
 	height: 100vh;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+flex: 1 0 auto;
+}
+
+
 #card-login {
 	/*display: none;*/
 }
@@ -15,7 +26,7 @@ section {
 
 
 @media screen and (min-width: 1000px){
-	nav > .nav-wrapper > .container, .card .container{
+	nav > .nav-wrapper > .container, .card .container {
 		width: 80%;
 	}
 }

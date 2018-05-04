@@ -6,7 +6,7 @@
 	<title>@yield('title', '') - Votaciones Unimag 2018</title>
 
 	<link rel="stylesheet" href="{{ asset('css/materialize.css') }}"">
-	<link rel="stylesheet" href="{{ asset('css/estilosTemplate.css') }}"">
+	<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"">
 	<link rel="stylesheet" href="{{ asset('css/material-icons.css') }}"">
 	
 </head>
