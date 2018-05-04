@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [
+    'uses' => 'UsuarioController@login',
+	'as' => 'usuario.login'
+]);
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
