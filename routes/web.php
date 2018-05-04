@@ -12,9 +12,30 @@
 */
 
 Route::get('/', [
-    'uses' => 'UsuarioController@login',
-	'as' => 'usuario.login'
+    'uses' => 'Controller@mi_login',
+	'as' => 'miLogin'
 ]);
+
+Route::get('/redireccionar-usuario', [
+    'uses' => 'UsuarioController@redirect',
+	'as' => 'usuario.redirect'
+]);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+
+	Route::get('/', [
+	    'uses' => 'UsuarioController@admin_index',
+		'as' => 'admin.index'
+	]);
+});	
+
+Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
+
+	Route::get('/', [
+	    'uses' => 'UsuarioController@votante_index',
+		'as' => 'votante.index'
+	]);
+});	
 
 Route::get('/welcome', function () {
     return view('welcome');

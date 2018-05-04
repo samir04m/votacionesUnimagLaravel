@@ -9,15 +9,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'users';
-    protected $primaryKey = 'id';
+    // protected $table = 'users';
+    // protected $primaryKey = 'id';
 
     protected $fillable = [
         'id', 'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'programa_id', 'mesa_id', 'estado'
     ];
 
     protected $hidden = [
-        'remember_token',
+        'remember_token'
     ];
 
     public function rol(){
