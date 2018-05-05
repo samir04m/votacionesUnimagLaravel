@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -13,7 +14,7 @@ class User extends Authenticatable
     // protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id', 'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'programa_id', 'mesa_id', 'estado'
+        'id', 'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'programa_id', 'tipo', 'mesa_id', 'estado'
     ];
 
     protected $hidden = [
@@ -34,6 +35,19 @@ class User extends Authenticatable
 
     public function candidato(){
       return $this->hasOne('App\Candidato');
+    }
+
+    // Obtener los valores del campo enum
+    public static function tipos(){
+
+        $tipo = DB::select( DB::raw("SHOW COLUMNS FROM users WHERE Field = 'tipo'") )[0]->Type;
+        preg_match('/^enum\((.*)\)$/', $tipo, $matches);
+        $enum = array();
+        foreach( explode(',', $matches[1]) as $value ){
+            $v = trim( $value, "'" );
+            $enum = array_add($enum, $v, $v);
+        }
+        return $enum;
     }
 
 }

@@ -18,5 +18,5 @@ INSERT INTO `rol`(`id`, `nombre`, `descripcion`, `created_at`, `updated_at`) VAL
 
 INSERT INTO `users`(`id`, `codigo`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `email`, `password`, 
 `rol_id`, `programa_id`, `mesa_id`, `tipo`, `estado`) VALUES
-(1,'2015114010','Juan','Jose','Meza','Gamarra','email@gmail.com','$2y$10$gep6e5nZIlfdxc8PwWVmxOCmnjIk/SDNnXEjoJheRBYKy1Z10Ciae','A',1,1,NULL,NULL),
+(1,'2015114010','Juan','Jose','Meza','Gamarra','email@gmail.com','$2y$10$gep6e5nZIlfdxc8PwWVmxOCmnjIk/SDNnXEjoJheRBYKy1Z10Ciae','A',NULL,NULL,NULL,NULL),
 (2,'2015114020','Andres','David','Lopez','Martinez','correo@gmail.com','$2y$10$CwOZcQvLdXtVZcF9Sbd6FOeKJrzurbajmXihEOecks6/Akjmp3Hky','V',1,1,'Estudiante','No ha votado');

@@ -37,8 +37,8 @@
 							</div>
 							
 
-							<div class="card-action center-align purple lighten-4">
-								<button type="submit" name='submit' value="Submit" class="btn btn-large waves-effect waves-light purple hoverable" id="btnLogin">Ingresar</button>
+							<div class="card-action center-align blue-grey lighten-4">
+								<button type="submit" name='submit' value="Submit" class="btn btn-large waves-effect waves-light cyan accent-4 hoverable" id="btnLogin">Ingresar</button>
                                     
 							</div>
 						</form>

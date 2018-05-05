@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container container-fluid">
 
 	<center>
 	    <h4>Administrador de Usuarios</h4>
@@ -14,17 +14,21 @@
 		
 		<div class="col s12">
 			@if(count($usuarios) > 0)
-				<table class="striped responsive-table highlight">
+				<table class="responsive-table highlight">
 					<thead>
 						<tr>
 							<th>Codigo</th>
 							<th>Nombre</th>
-							<th>2do Nombre</th>
+							<th>Nombre 2</th>
 							<th>Apellido</th>
-							<th>2do Apellido</th>
+							<th>Apellido 2</th>
 							<th>Rol</th>
+							<th>Tipo</th>
 							<th>Programa</th>
 							<th>Mesa</th>
+							<th>Estado</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,8 +40,20 @@
 								<td>{{ $usuario->apellido1 }}</td>
 								<td>{{ $usuario->apellido2 }}</td>
 								<td>{{ $usuario->rol->nombre }}</td>
+								<td>{{ $usuario->tipo }}</td>
 								<td>{{ $usuario->programa->nombre }}</td>
 								<td>{{ $usuario->mesa->nombre }}</td>
+								<td>{{ $usuario->estado }}</td>
+								<td>
+									<a href="{{ route('usuario.form-edit', $usuario->codigo) }}" class="btn btn-floating">
+										<i class="small material-icons">edit</i>
+									</a>
+								</td>
+								<td>
+									<a href="index.php?action=admin&idBorrar='.$respuesta[$indice]->getcodigo().'" class="btn red btn-floating btnDelete">
+										<i class="small material-icons">delete_forever</i>
+									</a>
+								</td>	
 							</tr>
 						@endforeach
 					</tbody>
@@ -66,9 +82,7 @@
 @section('extrajs')
 	<script type="text/javascript">
 		$(document).ready(function(){
-		    $('.modal').modal();
-		    $('select').material_select();
-
+			
 		    @if(isset($mensaje))
 		    	Materialize.toast('{{$mensaje}}', 3000, 'rounded')	
 		    @endif

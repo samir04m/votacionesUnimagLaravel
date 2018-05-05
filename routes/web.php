@@ -31,6 +31,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	    'uses' => 'UsuarioController@registar_usuario',
 		'as' => 'registrar.usuario'
 	]);
+
+	Route::get('usuario/edit/{codigo}', [
+	    'uses' => 'UsuarioController@usuario_form_edit',
+		'as' => 'usuario.form-edit'
+	]);
+
+	Route::put('usuario/update/{id}', [
+	    'uses' => 'UsuarioController@usuario_update',
+		'as' => 'usuario.update'
+	]);
 });	
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
@@ -39,6 +49,7 @@ Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
 	    'uses' => 'UsuarioController@votante_index',
 		'as' => 'votante.index'
 	]);
+
 });	
 
 Route::get('/welcome', function () {

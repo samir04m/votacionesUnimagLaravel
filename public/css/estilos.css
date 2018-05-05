@@ -19,8 +19,13 @@ flex: 1 0 auto;
 }
 
 
-#card-login {
+#card-login, #card-login .card-content{
 	/*display: none;*/
+	border-radius: 15px !important;
+}
+#card-login .card-action {
+
+	border-radius: 0 0 15px 15px !important;
 }
 
 
@@ -29,6 +34,10 @@ flex: 1 0 auto;
 	nav > .nav-wrapper > .container, .card .container {
 		width: 80%;
 	}
+}
+
+.container-fluid {
+	width: 85%;
 }
 
 td p {
@@ -54,11 +63,11 @@ td input {
 }
 
 .input-field input:focus {
- 	border-bottom: 1px solid #8e24aa !important;
- 	box-shadow: 0 1px 0 0 #8e24aa !important;
+ 	border-bottom: 1px solid #0097a7  !important;
+ 	box-shadow: 0 1px 0 0 #0097a7  !important;
 }
 .input-field label.active {
- 	color: #8e24aa !important;
+ 	color: #0097a7  !important;
 }
 
 [type="checkbox"]:checked:disabled + label:before {

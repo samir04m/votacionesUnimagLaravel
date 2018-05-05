@@ -1,6 +1,6 @@
 <header>
 	<div class="navbar-fixed">
-		<nav class="purple">
+		<nav class="cyan darken-2">
 			<div class="nav-wrapper">
 				<div class="container">
 					<a href="#" class="brand-logo">@yield('title', '')</a>

@@ -1,39 +1,52 @@
-<div id="registro-usuario" class="modal">
-    <div class="modal-content">
-      	<h4>Registro Usuario</h4>
-      	<form class="form-horizontal" method="POST" action="{{ route('registrar.usuario') }}">
+@extends('template.base')
+
+@section('title', 'Editar Usuario')
+
+@section('content')
+
+	<div class="container">
+		<div class="center">
+			<h4>Actualizar Usuario</h4>
+		</div>
+		<!-- <form class="form-horizontal" method="POST" action="{{ route('registrar.usuario') }}"> -->
+	
+		{!! Form::model($usuario, ['route'=>['usuario.update',$usuario->id], 'method'=>'PUT']) !!}
             {{ csrf_field() }}
 			<div class="row">
-		        <div class="input-field col s6">
-			          <input name="nombre1" id="nombre1" type="text" required>
-			          <label for="nombre1">Primer Nombre</label>
+				<div class="input-field col s6">
+		        	{!! Form::text('nombre1',null,['required']) !!}
+		        	{!! Form::label('nombre1','Primer Nombre') !!}
 		        </div>
 		        <div class="input-field col s6">
-			          <input name="nombre2" id="nombre2" type="text" required>
-			          <label for="nombre2">Segundo Nombre</label>
+		        	{!! Form::text('nombre2',null,['required']) !!}
+		        	{!! Form::label('nombre2','Segundo Nombre') !!}
 		        </div>
 		        <div class="input-field col s6">
-			          <input name="apellido1" id="apellido1" type="text" required>
-			          <label for="apellido1">Primer Apellido</label>
+		        	{!! Form::text('apellido1',null,['required']) !!}
+		        	{!! Form::label('apellido1','Primer apellido') !!}
 		        </div>
 		        <div class="input-field col s6">
-			          <input name="apellido2" id="apellido2" type="text" required>
-			          <label for="apellido2">Segundo Apellido</label>
+		        	{!! Form::text('apellido2',null,['required']) !!}
+		        	{!! Form::label('apellido2','Segundo apellido') !!}
 		        </div>
 		        <div class="input-field col s6">
-			          <input name="codigo" id="codigo" type="number" required>
-			          <label for="codigo">Codigo</label>
+		        	{!! Form::text('codigo',null,['required']) !!}
+		        	{!! Form::label('codigo','Codigo') !!}
 		        </div>
-		        <div class="input-field col s6">
+		        <!-- <div class="input-field col s6">
 			          <input name="password" id="password" type="password" required>
 			          <label for="password">Contraseña</label>
-		        </div>
+		        </div> -->
 		        <div class="input-field col s6">
 			          <select name="rol_id" id="rol_id" required>
 			          		@if(isset($datos_select['roles']) && count($datos_select['roles']) > 0)
 								
 			          			@foreach($datos_select['roles'] as $rol)
-									<option value="{{$rol->nombre[0]}}">{{$rol->nombre}}</option>
+			          				@if($usuario->rol_id == $rol->nombre[0])
+										<option value="{{$rol->nombre[0]}}" selected>{{$rol->nombre}}</option>
+			          				@else
+										<option value="{{$rol->nombre[0]}}">{{$rol->nombre}}</option>
+			          				@endif
 								@endforeach
 			          		@else
 			          			<option value="null" disabled>No hay opciones</option>
@@ -46,7 +59,11 @@
 			          		@if(isset($datos_select['programas']) && count($datos_select['programas']) > 0)
 								
 			          			@foreach($datos_select['programas'] as $programa)
-									<option value="{{$programa->id}}">{{$programa->nombre}}</option>
+			          				@if($usuario->programa_id == $programa->id)
+										<option value="{{$programa->id}}" selected>{{$programa->nombre}}</option>
+			          				@else
+										<option value="{{$programa->id}}">{{$programa->nombre}}</option>
+			          				@endif
 								@endforeach
 			          		@else
 			          			<option value="0" disabled>No hay opciones</option>
@@ -59,7 +76,11 @@
 			          		@if(isset($datos_select['mesas']) && count($datos_select['mesas']) > 0)
 								
 			          			@foreach($datos_select['mesas'] as $mesa)
-									<option value="{{$mesa->id}}">{{$mesa->nombre}}</option>
+			          				@if($usuario->mesa_id == $mesa->id)
+										<option value="{{$mesa->id}}" selected>{{$mesa->nombre}}</option>
+			          				@else
+										<option value="{{$mesa->id}}">{{$mesa->nombre}}</option>
+			          				@endif
 								@endforeach
 			          		@else
 			          			<option value="0" disabled>No hay opciones</option>
@@ -72,7 +93,11 @@
 			          		@if(isset($datos_select['tipos']) && count($datos_select['tipos']) > 0)
 								
 			          			@foreach($datos_select['tipos'] as $tipo)
-									<option value="{{$tipo}}">{{$tipo}}</option>
+			          				@if($usuario->tipo == $tipo)
+										<option value="{{$tipo}}" selected>{{$tipo}}</option>
+			          				@else
+										<option value="{{$tipo}}">{{$tipo}}</option>
+			          				@endif
 								@endforeach
 			          		@else
 			          			<option value="0" disabled>No hay opciones</option>
@@ -85,11 +110,12 @@
 
 		    </div>
       		<center>
-      			<button type="submit" class="btn waves-effect waves-light purple">Guardar</button>
+      			<button type="submit" class="btn waves-effect waves-light cyan">Guardar</button>
       		</center>
-      	</form>
-    </div>
-    <div class="modal-footer">
-      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-    </div>
- </div>
+      	<!-- </form> -->
+
+      	{!! Form::close() !!}
+	</div>
+	<br><br><br>
+
+@endsection
