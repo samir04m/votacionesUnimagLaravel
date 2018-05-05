@@ -81,6 +81,14 @@ class UsuarioController extends Controller
         return Redirect::to('/admin');
      }
 
+     public function usuario_delete($id){
+        $usuario = User::find($id);
+        $usuario->delete();
+
+        Session::flash('message', 'Eliminacion exitosa!');
+        return Redirect::to('/admin');
+     }
+
     public function votante_index(){
         return view('usuario.votante.inicio-votante');
     }

@@ -20,19 +20,12 @@
 
 	@include('template.modules.footer')
 
-	@yield('body', '')
+	@yield('extrabody', '')
 
 	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/materialize.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/myScript.js') }}"></script>
 	
-	<script type="text/javascript">
-		$(document).ready(function(){
-		    $('.modal').modal();
-		    $('select').material_select();
-
-		});
-
-	</script>
 
 	@yield('extrajs', '')
 

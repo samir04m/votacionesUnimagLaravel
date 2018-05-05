@@ -50,7 +50,7 @@
 									</a>
 								</td>
 								<td>
-									<a href="index.php?action=admin&idBorrar='.$respuesta[$indice]->getcodigo().'" class="btn red btn-floating btnDelete">
+									<a href="{{ route('usuario.delete', $usuario->id) }}" class="btn red btn-floating btnDelete">
 										<i class="small material-icons">delete_forever</i>
 									</a>
 								</td>	
@@ -75,8 +75,10 @@
 
 @endsection
 
-@section('body')
+@section('extrabody')
 	@include('template.modules.usuario-registro-modal')
+
+	@include('template.modules.modal-confirmar-eliminacion')
 @endsection
 
 @section('extrajs')

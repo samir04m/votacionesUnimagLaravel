@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 		'as' => 'usuario.update'
 	]);
 
+	Route::get('/usuario/delete/{id}', 'UsuarioController@usuario_delete')->name('usuario.delete');
+
 });	
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
