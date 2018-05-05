@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Session;
+use Redirect;
+
 use App\User;
 use App\Rol;
 use App\Programa;
@@ -28,18 +31,14 @@ class UsuarioController extends Controller
     	return view('usuario.noEncontrado');
     }
 
-    public function admin_index($extra = null){
+    public function admin_index(){
 
         $usuarios = User::where('rol_id', '<>', 'A')->get();
 
         $datos_select = $this->datos_select_usuario();
         // dd($datos_select['roles'][1]->nombre[0]);
 
-        if ($extra == null){
-            return view('usuario.admin.inicio-admin')->with('usuarios',$usuarios)->with('datos_select', $datos_select);
-        }else{
-            return view('usuario.admin.inicio-admin')->with('usuarios',$usuarios)->with('datos_select', $datos_select)->with($extra['key'],$extra['value']);
-        }
+        return view('usuario.admin.inicio-admin')->with('usuarios',$usuarios)->with('datos_select', $datos_select);
     }
 
     public function registar_usuario(Request $request){
@@ -49,14 +48,11 @@ class UsuarioController extends Controller
         $usuario->estado = 'No ha votado';
         // $result = $usuario->save();
         // dd($usuario);
-        if ($usuario->save()){
-            $mensaje = "Registro exitoso";
-        }else{
-            $mensaje = "No se pudo completar el Registro ";
+        $usuario->save();
 
-        }
-        return $this->admin_index(['key'=>'mensaje','value'=>$mensaje]);
-
+        Session::flash('message', 'Registro exitoso!');
+        return Redirect::to('/admin');
+        
     }
 
     public function datos_select_usuario(){
@@ -79,13 +75,10 @@ class UsuarioController extends Controller
         $usuario = User::find($id);
         $usuario->fill($request->all());
         // dd($usuario);
-        if ($usuario->save()){
-            $mensaje = "Actualizacion exitoso";
-        }else{
-            $mensaje = "No se pudo completar el Actualizacion ";
+        $usuario->save();
 
-        }
-        return $this->admin_index(['key'=>'mensaje','value'=>$mensaje]);
+        Session::flash('message', 'Actualizacion exitosa!');
+        return Redirect::to('/admin');
      }
 
     public function votante_index(){

@@ -82,9 +82,9 @@
 @section('extrajs')
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
-		    @if(isset($mensaje))
-		    	Materialize.toast('{{$mensaje}}', 3000, 'rounded')	
+
+		    @if(Session::has('message'))
+		    	Materialize.toast("{{Session::get('message')}}", 3000, 'rounded')	
 		    @endif
 
 		 	// $('#registro-usuario').modal('open');

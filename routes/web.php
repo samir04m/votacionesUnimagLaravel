@@ -23,10 +23,13 @@ Route::get('/redireccionar-usuario', [
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-	Route::get('/', [
-	    'uses' => 'UsuarioController@admin_index',
-		'as' => 'admin.index'
-	]);
+	// Route::get('/', [
+	//     'uses' => 'UsuarioController@admin_index',
+	// 	'as' => 'admin.index'
+	// ]);
+
+	Route::get('/', 'UsuarioController@admin_index')->name('admin.index');
+
 	Route::post('/registrar-usuario', [
 	    'uses' => 'UsuarioController@registar_usuario',
 		'as' => 'registrar.usuario'
@@ -41,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	    'uses' => 'UsuarioController@usuario_update',
 		'as' => 'usuario.update'
 	]);
+
 });	
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
