@@ -53,6 +53,11 @@ td input {
 	height: 30px !important;
 }
 
+.btnAutorizacion {
+	padding: 0 5px 0 5px;
+}
+
+
 /*================ modificacion de materialize ===========*/
 .input-field label {
 	font-size: 16px;

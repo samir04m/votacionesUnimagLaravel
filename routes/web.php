@@ -25,12 +25,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 		Route::get('edit/{codigo}', 'AdminController@usuario_form_edit')->name('usuario.form-edit');
 
-		Route::put('update/{id}', [
-		    'uses' => 'AdminController@usuario_update',
-			'as' => 'usuario.update'
-		]);
+		Route::put('update/{id}', 'AdminController@usuario_update')->name('usuario.update');
 
 		Route::get('delete/{id}', 'AdminController@usuario_delete')->name('usuario.delete');
+
+		Route::get('autorizar/{codigo}', 'AdminController@autorizar_usuario')->name('usuario.autorizar');
+		Route::get('desautorizar/{codigo}', 'AdminController@desautorizar_usuario')->name('usuario.desautorizar');
 	});
 
 });	

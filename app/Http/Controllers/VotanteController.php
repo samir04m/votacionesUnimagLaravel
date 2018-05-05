@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Voto;
+
 
 class VotanteController extends Controller
 {
@@ -12,6 +15,8 @@ class VotanteController extends Controller
     }
 
     public function votante_index(){
+    
+
         return view('usuario.votante.inicio-votante');
     }
 }

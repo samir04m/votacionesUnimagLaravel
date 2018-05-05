@@ -75,4 +75,23 @@ class AdminController extends Controller
         Session::flash('message', 'Eliminacion exitosa!');
         return Redirect::to('/admin');
      }
+
+
+     public function autorizar_usuario($codigo){
+        $usuario = User::where('codigo','=',$codigo)->first();
+        $usuario->estado = 'Autorizado';
+        $usuario->save();
+
+        Session::flash('message', 'El usuario '.$usuario->codigo.' ahora se encuentra autorizado para votar');
+        return Redirect::to('/admin');
+     }
+
+     public function desautorizar_usuario($codigo){
+        $usuario = User::where('codigo','=',$codigo)->first();
+        $usuario->estado = 'No ha votado';
+        $usuario->save();
+
+        Session::flash('message', 'El usuario '.$usuario->codigo.' se ha desautorizado para votar');
+        return Redirect::to('/admin');
+     }
 }
