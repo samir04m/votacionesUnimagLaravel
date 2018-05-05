@@ -48,7 +48,7 @@ class UsuarioController extends Controller
 
     public function registar_usuario(Request $request){
         $usuario = new User($request->all());
-        $usuario->password = $request->password;
+        $usuario->password = bcrypt($request->password);
         $usuario->email = $request->codigo.'@gmail.com';
         // $result = $usuario->save();
         // dd($result);
