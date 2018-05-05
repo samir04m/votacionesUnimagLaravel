@@ -8,8 +8,7 @@
 		<div class="center">
 			<h4>Actualizar Usuario</h4>
 		</div>
-		<!-- <form class="form-horizontal" method="POST" action="{{ route('registrar.usuario') }}"> -->
-	
+
 		{!! Form::model($usuario, ['route'=>['usuario.update',$usuario->id], 'method'=>'PUT']) !!}
             {{ csrf_field() }}
 			<div class="row">
@@ -112,7 +111,7 @@
       		<center>
       			<button type="submit" class="btn waves-effect waves-light cyan">Guardar</button>
       		</center>
-      	<!-- </form> -->
+
 
       	{!! Form::close() !!}
 	</div>

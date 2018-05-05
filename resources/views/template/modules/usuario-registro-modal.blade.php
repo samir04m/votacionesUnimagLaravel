@@ -1,7 +1,7 @@
 <div id="registro-usuario" class="modal">
     <div class="modal-content">
       	<h4>Registro Usuario</h4>
-      	<form class="form-horizontal" method="POST" action="{{ route('registrar.usuario') }}">
+      	<form class="form-horizontal" method="POST" action="{{ route('usuario.create') }}">
             {{ csrf_field() }}
 			<div class="row">
 		        <div class="input-field col s6">
@@ -85,7 +85,7 @@
 
 		    </div>
       		<center>
-      			<button type="submit" class="btn waves-effect waves-light purple">Guardar</button>
+      			<button type="submit" class="btn waves-effect waves-light cyan">Guardar</button>
       		</center>
       	</form>
     </div>

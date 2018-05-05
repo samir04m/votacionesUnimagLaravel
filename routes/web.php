@@ -11,50 +11,33 @@
 |
 */
 
-Route::get('/', [
-    'uses' => 'Controller@mi_login',
-	'as' => 'miLogin'
-]);
+Route::get('/', 'Controller@mi_login')->name('miLogin');
 
-Route::get('/redireccionar-usuario', [
-    'uses' => 'UsuarioController@redirect',
-	'as' => 'usuario.redirect'
-]);
+Route::get('/redireccionar-usuario', 'UsuarioController@redirect')->name('usuario.redirect');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-	// Route::get('/', [
-	//     'uses' => 'UsuarioController@admin_index',
-	// 	'as' => 'admin.index'
-	// ]);
+	Route::get('/', 'AdminController@admin_index')->name('admin.index');
 
-	Route::get('/', 'UsuarioController@admin_index')->name('admin.index');
+	Route::group(['prefix' => 'usuario'], function()
+	{ 
+		Route::post('create', 'AdminController@usuario_create')->name('usuario.create');
 
-	Route::post('/registrar-usuario', [
-	    'uses' => 'UsuarioController@registar_usuario',
-		'as' => 'registrar.usuario'
-	]);
+		Route::get('edit/{codigo}', 'AdminController@usuario_form_edit')->name('usuario.form-edit');
 
-	Route::get('usuario/edit/{codigo}', [
-	    'uses' => 'UsuarioController@usuario_form_edit',
-		'as' => 'usuario.form-edit'
-	]);
+		Route::put('update/{id}', [
+		    'uses' => 'AdminController@usuario_update',
+			'as' => 'usuario.update'
+		]);
 
-	Route::put('usuario/update/{id}', [
-	    'uses' => 'UsuarioController@usuario_update',
-		'as' => 'usuario.update'
-	]);
-
-	Route::get('/usuario/delete/{id}', 'UsuarioController@usuario_delete')->name('usuario.delete');
+		Route::get('delete/{id}', 'AdminController@usuario_delete')->name('usuario.delete');
+	});
 
 });	
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
 
-	Route::get('/', [
-	    'uses' => 'UsuarioController@votante_index',
-		'as' => 'votante.index'
-	]);
+	Route::get('/', 'VotanteController@votante_index')->name('votante.index');
 
 });	
 
