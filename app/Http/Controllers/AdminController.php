@@ -20,7 +20,7 @@ class AdminController extends Controller
 
     public function admin_index(){
 
-        $usuarios = User::where('rol_id', '<>', 'A')->get();
+        $usuarios = User::where('rol_id', '<>', 'A')->orderBy('tipo', 'asc')->get();
 
         $datos_select = $this->datos_select_usuario();
         // dd($datos_select['roles'][1]->nombre[0]);
@@ -58,8 +58,8 @@ class AdminController extends Controller
         return view('usuario.admin.usuario-form-edit')->with('usuario', $usuario)->with('datos_select', $datos_select);
     }
 
-     public function usuario_update($id, Request $request){
-        $usuario = User::find($id);
+     public function usuario_update($codigo, Request $request){
+        $usuario = User::find($codigo);
         $usuario->fill($request->all());
         // dd($usuario);
         $usuario->save();
@@ -68,8 +68,8 @@ class AdminController extends Controller
         return Redirect::to('/admin');
      }
 
-     public function usuario_delete($id){
-        $usuario = User::find($id);
+     public function usuario_delete($codigo){
+        $usuario = User::find($codigo);
         $usuario->delete();
 
         Session::flash('message', 'Eliminacion exitosa!');
@@ -78,7 +78,8 @@ class AdminController extends Controller
 
 
      public function autorizar_usuario($codigo){
-        $usuario = User::where('codigo','=',$codigo)->first();
+        // $usuario = User::where('codigo','=',$codigo)->first();
+        $usuario = User::find($codigo);
         $usuario->estado = 'Autorizado';
         $usuario->save();
 
@@ -87,7 +88,8 @@ class AdminController extends Controller
      }
 
      public function desautorizar_usuario($codigo){
-        $usuario = User::where('codigo','=',$codigo)->first();
+        // $usuario = User::where('codigo','=',$codigo)->first();
+        $usuario = User::find($codigo);
         $usuario->estado = 'No ha votado';
         $usuario->save();
 

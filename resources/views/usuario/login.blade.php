@@ -76,7 +76,7 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('#codigo').val("2015114020");	
+			$('#codigo').val("2015113040");	
 			$('#password').val("1234");	
 		});
 	</script>

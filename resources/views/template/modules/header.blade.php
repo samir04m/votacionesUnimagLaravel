@@ -5,7 +5,7 @@
 				<div class="container">
 					<a href="#" class="brand-logo">@yield('title', '')</a>
 					<ul class="right">
-						<li>{{ Auth::user()->codigo }}</li>
+						<li>{{ Auth::user()->codigo }} - {{ Auth::user()->nombre1 }} {{ Auth::user()->apellido1 }}</li>
 						<li>
 							<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                            	Cerrar Sesión</a>

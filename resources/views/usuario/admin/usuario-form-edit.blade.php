@@ -9,7 +9,7 @@
 			<h4>Actualizar Usuario</h4>
 		</div>
 
-		{!! Form::model($usuario, ['route'=>['usuario.update',$usuario->id], 'method'=>'PUT']) !!}
+		{!! Form::model($usuario, ['route'=>['usuario.update',$usuario->codigo], 'method'=>'PUT']) !!}
             {{ csrf_field() }}
 			<div class="row">
 				<div class="input-field col s6">
@@ -28,10 +28,10 @@
 		        	{!! Form::text('apellido2',null,['required']) !!}
 		        	{!! Form::label('apellido2','Segundo apellido') !!}
 		        </div>
-		        <div class="input-field col s6">
+		       <!--  <div class="input-field col s6">
 		        	{!! Form::text('codigo',null,['required']) !!}
 		        	{!! Form::label('codigo','Codigo') !!}
-		        </div>
+		        </div> -->
 		        <!-- <div class="input-field col s6">
 			          <input name="password" id="password" type="password" required>
 			          <label for="password">Contraseña</label>
