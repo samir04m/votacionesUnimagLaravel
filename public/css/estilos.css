@@ -28,8 +28,6 @@ flex: 1 0 auto;
 	border-radius: 0 0 15px 15px !important;
 }
 
-
-
 @media screen and (min-width: 1000px){
 	nav > .nav-wrapper > .container, .card .container {
 		width: 80%;
@@ -78,4 +76,30 @@ td input {
 [type="checkbox"]:checked:disabled + label:before {
 	border-right: 2px solid purple;
     border-bottom: 2px solid purple;
+}
+
+/*================ estolos para targeton electoral ===========*/
+
+.panel-candidato {
+	overflow: hidden;
+	line-height: 1.3;
+	padding: 10px;
+	transition: background-color 1s;
+}
+
+/*.panel-candidato:hover {
+	background-color: rgba(0,0,0,.1) !important;
+}*/
+.panel-candidato img {
+
+}
+.candidato-numero{
+	font-size: 28px;
+	font-weight: 600;
+}
+.candidato-nombre {
+	font-size: 20px;
+}
+.candidato-tipo {
+	font-size: 18px;
 }
