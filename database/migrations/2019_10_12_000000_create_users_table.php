@@ -17,23 +17,25 @@ class CreateUsersTable extends Migration
             // $table->increments('id');
             $table->string('codigo', 12)->unique();
             $table->string('nombre1', 30);
-            $table->string('nombre2', 30);
+            $table->string('nombre2', 30)->nullable();
             $table->string('apellido1', 30);
             $table->string('apellido2', 30);
             $table->string('email',50)->unique();
             $table->string('password');
-            $table->string('rol_id',1);
+            $table->string('rol_id',1)->nullable();
+            $table->string('tipo_id',3)->nullable();
             $table->integer('programa_id')->unsigned()->nullable();
             $table->integer('mesa_id')->unsigned()->nullable();
-            $table->enum('tipo', ['Estudiante','Docente','Egresado'])->nullable();
-            $table->enum('estado', ['No ha votado','Autorizado','Votando', 'Voto'])->nullable();
+            $table->integer('estado_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
 
             $table->primary('codigo');
-            $table->foreign('rol_id')->references('id')->on('rol');
-            $table->foreign('programa_id')->references('id')->on('programa');
-            $table->foreign('mesa_id')->references('id')->on('mesa');
+            $table->foreign('rol_id')->references('id')->on('rol')->onDelete('cascade');
+            $table->foreign('tipo_id')->references('id')->on('tipo')->onDelete('cascade');
+            $table->foreign('programa_id')->references('id')->on('programa')->onDelete('cascade');
+            $table->foreign('mesa_id')->references('id')->on('mesa')->onDelete('cascade');
+            $table->foreign('estado_id')->references('id')->on('estado')->onDelete('cascade');
         });
     }
 

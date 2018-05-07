@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolTable extends Migration
+class CreateEstadoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateRolTable extends Migration
      */
     public function up()
     {
-        Schema::create('rol', function (Blueprint $table) {
-            $table->string('id',1);
-            $table->string('nombre', 15);
+        Schema::create('estado', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre', 30);
             $table->text('descripcion')->nullable();
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateRolTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol');
+        Schema::dropIfExists('estado');
     }
 }

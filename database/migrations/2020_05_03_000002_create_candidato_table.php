@@ -16,7 +16,7 @@ class CreateCandidatoTable extends Migration
         Schema::create('candidato', function (Blueprint $table) {
             // $table->increments('id');
             $table->string('id',12);
-            $table->string('numero');
+            $table->string('numero',10)->nullable();
             $table->string('foto');
             $table->integer('organo_id')->unsigned();
             $table->timestamps();
