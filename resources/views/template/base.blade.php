@@ -8,7 +8,11 @@
 	<link rel="stylesheet" href="{{ asset('css/materialize.css') }}"">
 	<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"">
 	<link rel="stylesheet" href="{{ asset('css/material-icons.css') }}"">
-	
+	<style>
+		body {
+			background-image: url("{{ asset('imagenes/patron.png') }}");
+		}
+	</style>
 </head>
 <body>
 

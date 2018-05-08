@@ -71,7 +71,7 @@
 
 			@if(Auth::user()->estado_id == 4)
 				<center><h4>Certificado Electoral</h4></center>
-				
+				@include('template.modules.certificado')
 			@endif
 			
 
@@ -123,8 +123,7 @@
 				
 					formulario.submit();
 				}else{
-					alert('Debe votar en cada uno de los organos');
-					
+					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')	
 				}
 			});
 
