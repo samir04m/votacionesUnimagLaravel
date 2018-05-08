@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Estado extends Model
 {
-    protected $table = 'rol';
+    protected $table = 'estado';
     protected $primaryKey = 'id';
-    public $incrementing = false;
 
     protected $fillable = [
         'id', 'nombre', 'descripcion'

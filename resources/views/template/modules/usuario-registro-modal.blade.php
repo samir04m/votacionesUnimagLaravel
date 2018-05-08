@@ -33,7 +33,7 @@
 			          		@if(isset($datos_select['roles']) && count($datos_select['roles']) > 0)
 								
 			          			@foreach($datos_select['roles'] as $rol)
-									<option value="{{$rol->nombre[0]}}">{{$rol->nombre}}</option>
+									<option value="{{$rol->id}}">{{$rol->nombre}}</option>
 								@endforeach
 			          		@else
 			          			<option value="null" disabled>No hay opciones</option>
@@ -65,20 +65,20 @@
 			          			<option value="0" disabled>No hay opciones</option>
 			          		@endif
 			          </select>
-			          <label for="mesa_id">Seleccione un programa</label>
+			          <label for="mesa_id">Seleccione una mesa</label>
 		        </div>
 		        <div class="input-field col s6">
-			          <select name="tipo" id="tipo" required>
+			          <select name="tipo_id" id="tipo_id" required>
 			          		@if(isset($datos_select['tipos']) && count($datos_select['tipos']) > 0)
 								
 			          			@foreach($datos_select['tipos'] as $tipo)
-									<option value="{{$tipo}}">{{$tipo}}</option>
+									<option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
 								@endforeach
 			          		@else
 			          			<option value="0" disabled>No hay opciones</option>
 			          		@endif
 			          </select>
-			          <label for="tipo">Seleccione un tipo</label>
+			          <label for="tipo_id">Seleccione un tipo</label>
 		        </div>
 
 

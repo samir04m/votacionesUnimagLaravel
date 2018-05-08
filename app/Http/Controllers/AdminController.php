@@ -11,6 +11,8 @@ use App\User;
 use App\Rol;
 use App\Programa;
 use App\Mesa;
+use App\Tipo;
+use App\Estado;
 
 class AdminController extends Controller
 {
@@ -20,7 +22,7 @@ class AdminController extends Controller
 
     public function admin_index(){
 
-        $usuarios = User::where('rol_id', '<>', 'A')->orderBy('tipo', 'asc')->get();
+        $usuarios = User::where('rol_id', '<>', 'A')->orderBy('estado_id', 'asc')->get();
 
         $datos_select = $this->datos_select_usuario();
         // dd($datos_select['roles'][1]->nombre[0]);
@@ -32,8 +34,7 @@ class AdminController extends Controller
         $usuario = new User($request->all());
         $usuario->password = bcrypt($request->password);
         $usuario->email = $request->codigo.'@gmail.com';
-        $usuario->estado = 'No ha votado';
-        // $result = $usuario->save();
+        $usuario->estado_id = 1;
         // dd($usuario);
         $usuario->save();
 
@@ -47,13 +48,14 @@ class AdminController extends Controller
         $roles = Rol::where('id', '<>', 'A')->get();
         $programas = Programa::all();
         $mesas = Mesa::all();
-        $tipos = User::tipos();
+        $tipos = Tipo::all();
+        $estados = Estado::all();
 
-        return ['roles'=>$roles, 'programas'=>$programas, 'mesas'=>$mesas, 'tipos'=>$tipos];
+        return ['roles'=>$roles, 'programas'=>$programas, 'mesas'=>$mesas, 'tipos'=>$tipos, 'estados'=>$estados];
     }
 
     public function usuario_form_edit($codigo){
-        $usuario = User::where('codigo', $codigo)->first();
+        $usuario = User::find($codigo);
         $datos_select = $this->datos_select_usuario();
         return view('usuario.admin.usuario-form-edit')->with('usuario', $usuario)->with('datos_select', $datos_select);
     }

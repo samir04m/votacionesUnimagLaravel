@@ -5,14 +5,8 @@
 @section('content')
 	<div class="container">
 
-		<center>
-		    <h4>Targetón Electoral</h4>
-		    <!-- <hr> -->
-		    <br>
-		</center>
-
 		<div class="row">
-			@if(Auth::user()->estado == 'No ha votado')
+			@if(Auth::user()->estado_id == 1)
 				<div class="center grey-text darken-5">
 					<br><br>
 					<h3>Lo sentimos :(</h3>
@@ -20,7 +14,7 @@
 				</div>
 			@endif
 
-			@if(Auth::user()->estado == 'Autorizado' || Auth::user()->estado == 'Votando')
+			@if(Auth::user()->estado_id == 2 || Auth::user()->estado_id == 3)
 				@if(count($organos) > 0)
 					<ul class="collapsible popout" data-collapsible="accordion">
 						@foreach($organos as $organo)
@@ -29,19 +23,20 @@
 						      	<div class="collapsible-body grey lighten-4">
 						      		<div class="row">
 							      		@foreach($organo->candidatos as $candidato)
-							      			<div class="col s12 m6">
+							      			<div class="col s12 m4">
 												<div class="card-panel hoverable panel-candidato" id="{{$candidato->id}}" title="{{$candidato->usuario->nombre1}} {{$candidato->usuario->apellido1}}" data-organo="{{$candidato->organo_id}}">
 													<div class="col s12 m5">
 														<img src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" class="circle responsive-img">
 													</div>
 													<div class="col s12 m7 center-align">
 														<div class="candidato-numero center">#{{ $candidato->numero }}</div> 
-														<div class="candidato-nombre">
+														<div class="candidato-nombre truncate">
 															{{ $candidato->usuario->nombre1 }} 
 														 	{{ $candidato->usuario->apellido1 }}
 														 </div> 
-														<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo }}</div>
-														
+														@if($candidato->usuario->tipo) 
+															<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo->nombre }}</div>
+														@endif
 
 													</div>
 													
@@ -64,8 +59,9 @@
 
 			@endif
 
-			@if(Auth::user()->estado == 'Voto')
-				<h4>Usted Ya votó, ver certificado</h4>
+			@if(Auth::user()->estado_id == 4)
+				<center><h4>Targetón Electoral</h4></center>
+				
 			@endif
 			
 

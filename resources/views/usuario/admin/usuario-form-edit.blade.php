@@ -85,24 +85,41 @@
 			          			<option value="0" disabled>No hay opciones</option>
 			          		@endif
 			          </select>
-			          <label for="mesa_id">Seleccione un programa</label>
+			          <label for="mesa_id">Seleccione un mesa</label>
 		        </div>
 		        <div class="input-field col s6">
-			          <select name="tipo" id="tipo" required>
+			          <select name="tipo_id" id="tipo_id" required>
 			          		@if(isset($datos_select['tipos']) && count($datos_select['tipos']) > 0)
 								
 			          			@foreach($datos_select['tipos'] as $tipo)
 			          				@if($usuario->tipo == $tipo)
-										<option value="{{$tipo}}" selected>{{$tipo}}</option>
+										<option value="{{$tipo->id}}" selected>{{$tipo->nombre}}</option>
 			          				@else
-										<option value="{{$tipo}}">{{$tipo}}</option>
+										<option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
 			          				@endif
 								@endforeach
 			          		@else
 			          			<option value="0" disabled>No hay opciones</option>
 			          		@endif
 			          </select>
-			          <label for="tipo">Seleccione un tipo</label>
+			          <label for="tipo_id">Seleccione un tipo</label>
+		        </div>
+		        <div class="input-field col s6">
+			          <select name="estado_id" id="estado_id" required>
+			          		@if(isset($datos_select['estados']) && count($datos_select['estados']) > 0)
+								
+			          			@foreach($datos_select['estados'] as $estado)
+			          				@if($usuario->estado == $estado)
+										<option value="{{$estado->id}}" selected>{{$estado->nombre}}</option>
+			          				@else
+										<option value="{{$estado->id}}">{{$estado->nombre}}</option>
+			          				@endif
+								@endforeach
+			          		@else
+			          			<option value="0" disabled>No hay opciones</option>
+			          		@endif
+			          </select>
+			          <label for="estado_id">Seleccione un estado</label>
 		        </div>
 
 

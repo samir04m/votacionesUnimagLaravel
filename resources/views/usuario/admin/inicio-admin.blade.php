@@ -40,26 +40,17 @@
 								<td>{{ $usuario->apellido1 }}</td>
 								<td>{{ $usuario->apellido2 }}</td>
 								<td>{{ $usuario->rol->nombre }}</td>
-								<td>{{ $usuario->tipo }}</td>
+								<td>{{ $usuario->tipo->nombre }}</td>
 								<td>{{ $usuario->programa->nombre }}</td>
 								<td>{{ $usuario->mesa->nombre }}</td>
-								<td>
-									@if($usuario->estado == 'No ha votado')
-										<a href="{{ route('usuario.autorizar', $usuario->codigo) }}" class="waves-effect waves-light btn btnAutorizacion">Autorizar</a>
-									@elseif($usuario->estado == 'Autorizado')
-										<a href="{{ route('usuario.desautorizar', $usuario->codigo) }}" class="waves-effect waves-light grey btn btnAutorizacion">desautorizar</a>
-									@else
-										{{ $usuario->estado }}
-									@endif
-
-								</td>
+								<td>{{ $usuario->estado->nombre }}</td>
 								<td>
 									<a href="{{ route('usuario.form-edit', $usuario->codigo) }}" class="btn btn-floating">
 										<i class="small material-icons">edit</i>
 									</a>
 								</td>
 								<td>
-									<a href="{{ route('usuario.delete', $usuario->id) }}" class="btn red btn-floating btnDelete">
+									<a href="{{ route('usuario.delete', $usuario->codigo) }}" class="btn red btn-floating btnDelete">
 										<i class="small material-icons">delete_forever</i>
 									</a>
 								</td>	

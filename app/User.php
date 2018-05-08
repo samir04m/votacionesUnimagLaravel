@@ -12,9 +12,10 @@ class User extends Authenticatable
 
     // protected $table = 'users';
     protected $primaryKey = 'codigo';
+    public $incrementing = false;
 
     protected $fillable = [
-        'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'programa_id', 'tipo', 'mesa_id', 'estado'
+        'codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'tipo_id', 'programa_id', 'mesa_id', 'estado_id'
     ];
 
     protected $hidden = [
@@ -33,21 +34,16 @@ class User extends Authenticatable
       return $this->belongsTo('App\Mesa');
     }
 
-    public function candidato(){
-      return $this->hasOne('App\Candidato');
+    public function tipo(){
+      return $this->belongsTo('App\Tipo');
     }
 
-    // Obtener los valores del campo enum
-    public static function tipos(){
+    public function estado(){
+      return $this->belongsTo('App\Estado');
+    }
 
-        $tipo = DB::select( DB::raw("SHOW COLUMNS FROM users WHERE Field = 'tipo'") )[0]->Type;
-        preg_match('/^enum\((.*)\)$/', $tipo, $matches);
-        $enum = array();
-        foreach( explode(',', $matches[1]) as $value ){
-            $v = trim( $value, "'" );
-            $enum = array_add($enum, $v, $v);
-        }
-        return $enum;
+    public function candidato(){
+      return $this->hasOne('App\Candidato');
     }
 
 }
