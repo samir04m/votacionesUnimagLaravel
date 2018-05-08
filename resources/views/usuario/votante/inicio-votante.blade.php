@@ -15,31 +15,35 @@
 			@endif
 
 			@if(Auth::user()->estado_id == 2 || Auth::user()->estado_id == 3)
+				<center><h4>Targetón Electoral</h4></center>
 				@if(count($organos) > 0)
 					<ul class="collapsible popout" data-collapsible="accordion">
 						@foreach($organos as $organo)
 						    <li>
-						      	<div class="collapsible-header"><i class="material-icons">portrait</i> {{ $organo->nombre }}</div>
-						      	<div class="collapsible-body grey lighten-4">
+						      	<div class="collapsible-header waves-effect waves-teal"><i class="material-icons">portrait</i> {{ $organo->nombre }}</div>
+						      	<div class="collapsible-body grey lighten-3">
 						      		<div class="row">
 							      		@foreach($organo->candidatos as $candidato)
 							      			<div class="col s12 m4">
-												<div class="card-panel hoverable panel-candidato" id="{{$candidato->id}}" title="{{$candidato->usuario->nombre1}} {{$candidato->usuario->apellido1}}" data-organo="{{$candidato->organo_id}}">
-													<div class="col s12 m5">
-														<img src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" class="circle responsive-img">
+												<div class="card horizontal hoverable waves-effect waves-teal panel-candidato" id="{{$candidato->id}}" title="{{$candidato->usuario->nombre1}} {{$candidato->usuario->apellido1}}" data-organo="{{$candidato->organo_id}}">
+													<div class="card-image">
+														<img src="{{ asset('imagenes/candidatos/'.$candidato->foto) }}" class="circle responsive-img">
 													</div>
-													<div class="col s12 m7 center-align">
-														<div class="candidato-numero center">#{{ $candidato->numero }}</div> 
-														<div class="candidato-nombre truncate">
-															{{ $candidato->usuario->nombre1 }} 
-														 	{{ $candidato->usuario->apellido1 }}
-														 </div> 
-														@if($candidato->usuario->tipo) 
-															<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo->nombre }}</div>
-														@endif
+													<div class="card-stacked">
+														
+														<div class="card-content center-align">
+															<div class="candidato-numero center">{{ $candidato->numero }}</div> 
+															<div class="candidato-nombre truncate">
+																{{ $candidato->usuario->nombre1 }} 
+															 	{{ $candidato->usuario->apellido1 }}
+															 </div> 
+															@if($candidato->usuario->tipo) 
+																<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo->nombre }}</div>
+															@endif
 
-													</div>
+														</div>
 													
+													</div>
 														
 												
 												</div>
@@ -50,6 +54,12 @@
 						    </li>
 					    @endforeach
 					</ul>
+
+					<div class="fixed-action-btn">
+					    <button class="btn-large waves-effect waves-light cyan darken-2 z-depth-4 pulse" id="votar">
+					      	<big><b>votar</b></big>
+					    </button>
+				  </div>
 				@else
 					<div class="center grey-text darken-5">
 						<br><br>
@@ -60,13 +70,17 @@
 			@endif
 
 			@if(Auth::user()->estado_id == 4)
-				<center><h4>Targetón Electoral</h4></center>
+				<center><h4>Certificado Electoral</h4></center>
 				
 			@endif
 			
 
 		</div>
 	</div>
+	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
+		 {{ csrf_field() }}
+		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
+	</form>
 
 @endsection
 
@@ -80,34 +94,41 @@
 
   			$('.panel-candidato').click(function(){
   				var me = $(this);
+				var candidato_id = me.attr('id');
+				var organo_id = me.attr('data-organo');
 
-  				if (candidatos_seleccionados[me.attr('data-organo')] == null){
-
-  					addSeleccionado(me.attr('data-organo'), me.attr('id') );
-  					// console.log(candidatos_seleccionados[me.attr('data-organo')] );
-  	
-  					$(this).addClass('cyan lighten-2');
-  					console.log('candidatos seleccionado',candidatos_seleccionados);
-  				}else{
-  					console.log('Ya seleccionadoa');
-  					
-  				}
-
-
-  				console.log("Ha selecionado a",$(this).attr('id'),"-",$(this).attr('title'));
+				if (candidatos_seleccionados[parseInt(organo_id)] != ''){
+					var string_id = '#'+candidatos_seleccionados[organo_id];
+					$(string_id).removeClass('cyan darken-1 white-text');
+				}
+				me.addClass('cyan darken-1 white-text');
+				candidatos_seleccionados[organo_id] = candidato_id;
+  				
+				console.log(candidatos_seleccionados);
   			});
 
+  			$('button#votar').click(function(){
+				var nSeleccionados = Object.keys(candidatos_seleccionados).length;
+				if (nSeleccionados == {{count($organos)}}){
+					var formulario = $('#candidatosSeleccionados');
+					for (var i in candidatos_seleccionados){
+						var input = $('<input/>', {
+							'type': 'text',
+							'name': 'candidato_'+parseInt(i),
+							'value': candidatos_seleccionados[i]
+						});
+						console.log(input);
+						formulario.append(input)
+					}
+				
+					formulario.submit();
+				}else{
+					alert('Debe votar en cada uno de los organos');
+					
+				}
+			});
+
 		});
-
-		function organoSeleccionado(organo){
-			console.log('nada');
-		}
-
-		function addSeleccionado(organo_id, candidato_id){
-			// console.log(typeof(organo_id));
-			candidatos_seleccionados[organo_id] = candidato_id;
-			// candidatos_seleccionados.shift();
-		}
 
 	</script>
 @endsection

@@ -39,6 +39,8 @@ Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
 
 	Route::get('/', 'VotanteController@votante_index')->name('votante.index');
 
+	Route::post('votar', 'VotanteController@votar')->name('votante.votar');
+
 });	
 
 Route::get('/welcome', function () {
