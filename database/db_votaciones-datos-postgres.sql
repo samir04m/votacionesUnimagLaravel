@@ -1,44 +1,44 @@
 
-INSERT INTO 'facultad'('id', 'nombre', 'created_at', 'updated_at') VALUES 
+INSERT INTO facultad(id, nombre, created_at, updated_at) VALUES 
 (1,'Ingenieria','2018-05-04 03:58:05','2018-05-04 03:58:05'),
 (2,'Ciencias de la Educación','2018-05-04 03:58:05','2018-05-04 03:58:05'),
 (3,'Ciencias de la Salud','2018-05-04 03:58:05','2018-05-04 03:58:05'),
 (4,'Humanidades','2018-05-04 03:58:05','2018-05-04 03:58:05');
 
-INSERT INTO 'programa'('id', 'nombre', 'facultad_id', 'created_at', 'updated_at') VALUES 
+INSERT INTO programa(id, nombre, facultad_id, created_at, updated_at) VALUES 
 (1,'Ingenieria de Sistemas',1,'2018-05-04 03:59:01','2018-05-04 03:59:01'),
 (2,'Ingeniería Electronica',1,'2018-05-04 03:59:01','2018-05-04 03:59:01'),
 (3,'Medicina',3,'2018-05-04 03:59:01','2018-05-04 03:59:01'),
 (4,'Derecho',4,'2018-05-04 03:59:01','2018-05-04 03:59:01');
 
-INSERT INTO 'lugar'('id', 'nombre', 'created_at', 'updated_at') VALUES 
+INSERT INTO lugar(id, nombre, created_at, updated_at) VALUES 
 (1,'Lugar N1','2018-05-04 04:06:14','2018-05-04 04:06:14'),
 (2,'Lugar N2','2018-05-04 04:06:14','2018-05-04 04:06:14'),
 (3,'Lugar N3','2018-05-04 04:06:14','2018-05-04 04:06:14'),
 (4,'Lugar N4','2018-05-04 04:06:14','2018-05-04 04:06:14');
  
-INSERT INTO 'mesa'('id', 'nombre', 'lugar_id', 'created_at', 'updated_at') VALUES
+INSERT INTO mesa(id, nombre, lugar_id, created_at, updated_at) VALUES
 (1,'Mesa M01',1,'2018-05-04 04:07:06','2018-05-04 04:07:06'),
 (2,'Mesa M02',2,'2018-05-04 04:07:06','2018-05-04 04:07:06'),
 (3,'Mesa M03',3,'2018-05-04 04:07:06','2018-05-04 04:07:06'),
 (4,'Mesa M04',4,'2018-05-04 04:07:06','2018-05-04 04:07:06'); 
 
-INSERT INTO 'rol'('id', 'nombre', 'descripcion', 'created_at', 'updated_at') VALUES 
+INSERT INTO rol(id, nombre, descripcion, created_at, updated_at) VALUES 
 ('A','Administrador','Es quien como su nombre lo indica administra el sitio','2018-05-04 04:02:21','2018-05-04 04:02:21'),
 ('V','Votante','Es quien tiene la facultad de ejercer el voto','2018-05-04 06:01:51','2018-05-04 06:01:51');
 
-INSERT INTO 'estado'('id', 'nombre', 'descripcion', 'created_at', 'updated_at') VALUES
+INSERT INTO estado(id, nombre, descripcion, created_at, updated_at) VALUES
 (1, 'No ha votado', 'No puede votar sin autorizacion', '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 (2, 'Autorizado', 'Puede votar', '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 (3, 'Votando', 'Puede votar', '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 (4, 'Voto', 'Ya realizo el proceso de votacion', '2018-05-04 06:01:51', '2018-05-04 06:01:51');
 
-INSERT INTO 'tipo'('id', 'nombre', 'descripcion', 'created_at', 'updated_at') VALUES
+INSERT INTO tipo(id, nombre, descripcion, created_at, updated_at) VALUES
 ('EST', 'Estudiante', 'Descripcion del Estudiante', '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 ('DOC', 'Docente', 'Descripcion del Docente', '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 ('EGR', 'Egresado', 'Descripcion del Egresado', '2018-05-04 06:01:51', '2018-05-04 06:01:51');
 
-INSERT INTO 'users' ('codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'password', 'rol_id', 'tipo_id', 'programa_id', 'mesa_id', 'estado_id', 'remember_token', 'created_at', 'updated_at') VALUES 
+INSERT INTO users (codigo, nombre1, nombre2, apellido1, apellido2, email, password, rol_id, tipo_id, programa_id, mesa_id, estado_id, remember_token, created_at, updated_at) VALUES 
 ('1000', 'Voto', '-', 'en Blanco', '-', 'blanco1@gmal.com', '-', NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 ('2000', 'Voto', '-', 'en Blanco', '-', 'blanco2@gmal.com', '-', NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
 ('3000', 'Voto', '-', 'en Blanco', '-', 'blanco3@gmal.com', '-', NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-04 06:01:51', '2018-05-04 06:01:51'),
@@ -54,13 +54,13 @@ INSERT INTO 'users' ('codigo', 'nombre1', 'nombre2', 'apellido1', 'apellido2', '
 ('2017114020', 'Luis', 'Fernando', 'Hernadez', 'Gamarra', '2017114020@gmail.com', '$2y$10$4aTUWiBMpLFFi2GyQKFyHeWKttKH8QnflG6189n4SFU5H.jlzdapC', 'V', 'DOC', 2, 2, 4, NULL, '2018-05-04 09:07:06', '2018-05-06 05:09:46'),
 ('2018114030', 'Jorge', 'Luis', 'Suarez', 'Bula', '2018114030@gmail.com', '$2y$10$x.b7HkcnxddLtT2CV0dPe.WrDsupLmIqzLgexYxTqTmqt3YanAo6y', 'V', 'EGR', 3, 4, 2, NULL, '2018-05-04 09:07:06', '2018-05-04 09:07:06');
 
-INSERT INTO 'organo' ('id', 'nombre', 'descripcion', 'created_at', 'updated_at') VALUES
+INSERT INTO organo (id, nombre, descripcion, created_at, updated_at) VALUES
 (1, 'Consejo Superior', 'Sin descripcion', '2018-05-06 05:35:15', '2018-05-06 05:35:15'),
 (2, 'Consejo Academico', 'Sin descripcion', '2018-05-06 05:35:45', '2018-05-06 05:35:45'),
 (3, 'Consejo del IDEA', 'Sin descripcion', '2018-05-06 05:36:04', '2018-05-06 05:36:04'),
 (4, 'Consejo de Facultad', 'Sin descripcion', '2018-05-06 05:36:20', '2018-05-06 05:36:20');
 
-INSERT INTO 'candidato' ('id', 'numero', 'foto', 'organo_id', 'created_at', 'updated_at') VALUES
+INSERT INTO candidato (id, numero, foto, organo_id, created_at, updated_at) VALUES
 ('1000', 'BLANCO', 'blanco.jpg', 1, '2018-05-06 05:45:33', '2018-05-06 05:45:33'),
 ('2000', 'BLANCO', 'blanco.jpg', 2, '2018-05-06 05:45:33', '2018-05-06 05:45:33'),
 ('3000', 'BLANCO', 'blanco.jpg', 3, '2018-05-06 05:45:33', '2018-05-06 05:45:33'),
