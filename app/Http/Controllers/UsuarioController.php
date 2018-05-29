@@ -24,7 +24,10 @@ class UsuarioController extends Controller
     	if(Auth::User()->rol_id == 'A'){
             // redireccion si es un administrador
             return redirect()->route('admin.index');
-        }elseif (Auth::User()->rol_id == 'V'){
+        }elseif (Auth::User()->rol_id == 'J'){
+            // redireccion si es un jurado
+            return redirect()->route('jurado.index');
+    	}elseif (Auth::User()->rol_id == 'V'){
             // redireccion si es un votante
             return redirect()->route('votante.index');
     	}

@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('/', 'AdminController@admin_index')->name('admin.index');
 
 	Route::group(['prefix' => 'usuario'], function()
-	{ 
+	{
 		Route::post('create', 'AdminController@usuario_create')->name('usuario.create');
 
 		Route::get('edit/{codigo}', 'AdminController@usuario_form_edit')->name('usuario.form-edit');
@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 		Route::get('desautorizar/{codigo}', 'AdminController@desautorizar_usuario')->name('usuario.desautorizar');
 	});
 
-});	
+});
 
 Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
 
@@ -41,7 +41,18 @@ Route::group(['prefix' => 'votante', 'middleware' => 'auth'], function() {
 
 	Route::post('votar', 'VotanteController@votar')->name('votante.votar');
 
-});	
+});
+
+Route::group(['prefix' => 'jurado', 'middleware' => 'auth'], function() {
+
+	Route::get('/', 'JuradoController@jurado_index')->name('jurado.index');
+
+	// Route::post('votar', 'JuradoController@otra')->name('jurado.otra');
+	Route::get('autorizar/{codigo}', 'JuradoController@autorizar')->name('autorizar');
+	Route::get('desautorizar/{codigo}', 'JuradoController@desautorizar')->name('desautorizar');
+	Route::post('buscarVotante', 'JuradoController@buscarVotante')->name('buscarVotante');
+
+});
 
 Route::get('/welcome', function () {
     return view('welcome');

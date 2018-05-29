@@ -35,27 +35,27 @@
 
 
 							</div>
-							
+
 
 							<div class="card-action center-align blue-grey lighten-4">
 								<button type="submit" name='submit' value="Submit" class="btn btn-large waves-effect waves-light cyan accent-4 hoverable" id="btnLogin">Ingresar</button>
-                                    
+
 							</div>
 						</form>
 
 					</div>
 					<!-- <div class="card-panel grey lighten-4 z-depth-4 hoverable">
-						<a class="" href="{{ route('password.request') }}">	
+						<a class="" href="{{ route('password.request') }}">
 							Olvidastes tu contraseña?
-                        </a>			
+                        </a>
 					</div> -->
 					@if ($errors->has('codigo'))
 						<div class="card-panel red white-text">
                             <strong>{{ $errors->first('codigo') }}</strong>
-							
+
 						</div>
                     @endif
-						
+
 				</div>
 			</div>
 		</div>
@@ -76,8 +76,8 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('#codigo').val("2015113040");	
-			$('#password').val("1234");	
+			$('#codigo').val("2018110000");	
+			$('#password').val("1234");
 		});
 	</script>
 

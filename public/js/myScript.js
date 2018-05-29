@@ -4,15 +4,10 @@ $(document).ready(function(){
     $('.modal').modal();
     $('select').material_select();
 
-
-
-
-
-
     // logica modal confirmacion elimanacion
 
     var urlDelete = '#';
-			
+
 	$('a.btnDelete').click(function(e){
 		e.preventDefault();
 		urlDelete = $(this).attr('href');
@@ -24,4 +19,3 @@ $(document).ready(function(){
 	});
 
 });
-
