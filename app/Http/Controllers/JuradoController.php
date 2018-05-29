@@ -39,7 +39,10 @@ class JuradoController extends Controller
         // $mesa = Mesa::where('id', Auth::User()->mesa_id)->first();
         $date = getDate();
         $user = User::where('codigo',$request->all()['codigo'])->get();
-        // dd($user);
+        if ((count($user)>0) && ($user[0]->mesa_id != (int) $request->all()['mesa_id'] )){
+            // dd( $user[0]);
+            return view('usuario.jurado.inicio-jurado')->with('usuarios',$user)->with('date',$date)->with("useri",$user[0]);
+        }
         return view('usuario.jurado.inicio-jurado')->with('usuarios',$user)->with('date',$date);
     }
 }
