@@ -3,9 +3,10 @@
 @section('title', 'Portal Votante')
 
 @section('content')
-	<div class="container">
+<div class="container">
 
-		<div class="row">
+	<div class="row">
+		@if($date['hours'] >= 8 && $date['hours'] < 16)
 			@if(Auth::user()->estado_id == 1)
 				<div class="center grey-text darken-5">
 					<br><br>
@@ -30,22 +31,22 @@
 														<img src="{{ asset('imagenes/candidatos/'.$candidato->foto) }}" class="circle responsive-img">
 													</div>
 													<div class="card-stacked">
-														
+
 														<div class="card-content center-align">
-															<div class="candidato-numero center">{{ $candidato->numero }}</div> 
+															<div class="candidato-numero center">{{ $candidato->numero }}</div>
 															<div class="candidato-nombre truncate">
-																{{ $candidato->usuario->nombre1 }} 
+																{{ $candidato->usuario->nombre1 }}
 															 	{{ $candidato->usuario->apellido1 }}
-															 </div> 
-															@if($candidato->usuario->tipo) 
+															 </div>
+															@if($candidato->usuario->tipo)
 																<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo->nombre }}</div>
 															@endif
 
 														</div>
-													
+
 													</div>
-														
-												
+
+
 												</div>
 							      			</div>
 							      		@endforeach
@@ -73,10 +74,21 @@
 				<center><h4>Certificado Electoral</h4></center>
 				@include('template.modules.certificado')
 			@endif
-			
-
-		</div>
+		@endif
+		@if($date['hours'] >= 0 && $date['hours'] < 8)
+			<div class="card-panel center">
+				<h3>Aun no inician las votaciones</h3>
+				<h5>El horario para votar es de 8 am a 4 pm</h5>
+			</div>
+		@endif
+		@if($date['hours'] >= 16 && $date['hours'] <= 23)
+			<div class="card-panel center">
+				<h3>La votaciones esta cerradas</h3>
+				<h5>A las 4pm finalizo el ciclo de votacion</h5>
+			</div>
+		@endif
 	</div>
+</div>
 	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
 		 {{ csrf_field() }}
 		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
@@ -86,7 +98,7 @@
 
 @section('extrajs')
 	<script type="text/javascript">
-		
+
 		$(document).ready(function(){
   			$('.collapsible').collapsible('open', 0);
 
@@ -103,7 +115,7 @@
 				}
 				me.addClass('cyan darken-1 white-text');
 				candidatos_seleccionados[organo_id] = candidato_id;
-  				
+
 				console.log(candidatos_seleccionados);
   			});
 
@@ -120,10 +132,10 @@
 						console.log(input);
 						formulario.append(input)
 					}
-				
+
 					formulario.submit();
 				}else{
-					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')	
+					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')
 				}
 			});
 

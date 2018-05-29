@@ -12,15 +12,15 @@ use App\Candidato;
 
 class VotanteController extends Controller
 {
-    
+
     public function __construct(){
         $this->middleware('auth');
     }
 
     public function votante_index(){
     	$organos = Organo::all();
-
-        return view('usuario.votante.inicio-votante')->with('organos',$organos);
+        $date = getDate();
+        return view('usuario.votante.inicio-votante')->with('organos',$organos)->with('date',$date);
     }
 
     public function votar(Request $request){
