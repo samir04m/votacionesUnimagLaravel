@@ -19,10 +19,11 @@
             <h5>{{Auth::User()->mesa->nombre}}</h5>
         </div>
 
-        @if($date['hours'] >= 2)
-            <div class="card-panel">
-                
-            </div>
+        @if($date['hours'] >= 16)
+                <div class="card-panel center">
+                    <h4>Elecciones Finalizadas</h4>
+                    <a href="{{route('resultadosMesa')}}" class="btn">Ver resultados</a>
+                </div>
         @endif
 
     		@if(count($usuarios) > 0)

@@ -7,6 +7,8 @@ use Auth;
 use Redirect;
 use App\User;
 use App\Mesa;
+use App\Organo;
+use App\Candidato;
 
 class JuradoController extends Controller
 {
@@ -44,5 +46,12 @@ class JuradoController extends Controller
             return view('usuario.jurado.inicio-jurado')->with('usuarios',$user)->with('date',$date)->with("useri",$user[0]);
         }
         return view('usuario.jurado.inicio-jurado')->with('usuarios',$user)->with('date',$date);
+    }
+
+    public function resultados(){
+        $organos = Organo::all();
+        $candidatos = Candidato::all();
+        // dd($organos);
+        return view('usuario.jurado.resultados')->with('organos', $organos)->with('candidatos', $candidatos);
     }
 }

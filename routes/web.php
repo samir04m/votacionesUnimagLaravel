@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'Controller@mi_login')->name('miLogin');
+Route::get('/', 'Controller@index')->name('index');
+
+Route::get('/inicio-sesion', 'Controller@mi_login')->name('miLogin');
+Route::post('/buscar-mi-mesa', 'Controller@buscarMesa')->name('buscarMesa');
 
 Route::get('/redireccionar-usuario', 'UsuarioController@redirect')->name('usuario.redirect');
 
@@ -53,6 +56,7 @@ Route::group(['prefix' => 'jurado', 'middleware' => 'auth'], function() {
 	Route::get('autorizar/{codigo}', 'JuradoController@autorizar')->name('autorizar');
 	Route::get('desautorizar/{codigo}', 'JuradoController@desautorizar')->name('desautorizar');
 	Route::post('buscarVotante', 'JuradoController@buscarVotante')->name('buscarVotante');
+	Route::get('resultados/', 'JuradoController@resultados')->name('resultados');
 
 });
 
