@@ -18,106 +18,109 @@
         <div class="right">
             <h5>{{Auth::User()->mesa->nombre}}</h5>
         </div>
-			@if(count($usuarios) > 0)
-            <div class="col s12">
-                <div class="card-panel">
-                    @if(isset($useri) == false)
-                        <div class="col s12 m6">
-                            <h4>Listado votantes </h4>
-                        </div>
-                        <div class="col s12 m6">
-                            <form action="{{route('buscarVotante')}}" method="post">
-                                {{ csrf_field() }}
-                                <div class="row">
-                                    <div class="input-field col s8">
-                                        <input type="number" name="mesa_id" class="hide" value="{{Auth::User()->mesa_id}}">
-                                        <input type="number" name="codigo">
-                                        <label for="busqueda">Buscar votante por codigo</label>
+
+        @if($date['hours'] >= 2)
+            <div class="card-panel">
+                
+            </div>
+        @endif
+
+    		@if(count($usuarios) > 0)
+                <div class="col s12">
+                    <div class="card-panel">
+                        @if(isset($useri) == false)
+                            <div class="col s12 m6">
+                                <h4>Listado votantes </h4>
+                            </div>
+                            <div class="col s12 m6">
+                                <form action="{{route('buscarVotante')}}" method="post">
+                                    {{ csrf_field() }}
+                                    <div class="row">
+                                        <div class="input-field col s8">
+                                            <input type="number" name="mesa_id" class="hide" value="{{Auth::User()->mesa_id}}">
+                                            <input type="number" name="codigo">
+                                            <label for="busqueda">Buscar votante por codigo</label>
+                                        </div>
+                                        <div class="col s4">
+                                            <br>
+                                            <button type="submit" class="btn">BUSCAR</button>
+                                        </div>
+
                                     </div>
-                                    <div class="col s4">
-                                        <br>
-                                        <button type="submit" class="btn">BUSCAR</button>
-                                    </div>
+                                </form>
+                            </div>
+                                <table class="responsive-table highlight display" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Nombre</th>
+                                            <th>Nombre 2</th>
+                                            <th>Apellido</th>
+                                            <th>Apellido 2</th>
+                                            <th>Rol</th>
+                                            <th>Tipo</th>
+                                            <th>Programa</th>
+                                            <th>Estado</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($usuarios as $usuario)
+                                        <tr>
+                                            <td>{{ $usuario->codigo }}</td>
+                                            <td>{{ $usuario->nombre1 }}</td>
+                                            <td>{{ $usuario->nombre2 }}</td>
+                                            <td>{{ $usuario->apellido1 }}</td>
+                                            <td>{{ $usuario->apellido2 }}</td>
+                                            <td>{{ $usuario->rol->nombre }}</td>
+                                            <td>{{ $usuario->tipo->nombre }}</td>
+                                            <td>{{ $usuario->programa->nombre }}</td>
+                                            <td>{{ $usuario->estado->nombre }}</td>
 
-                                </div>
-                            </form>
-                        </div>
-                            <table class="responsive-table highlight display" id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Nombre</th>
-                                        <th>Nombre 2</th>
-                                        <th>Apellido</th>
-                                        <th>Apellido 2</th>
-                                        <th>Rol</th>
-                                        <th>Tipo</th>
-                                        <th>Programa</th>
-                                        <th>Estado</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($usuarios as $usuario)
-                                    <tr>
-                                        <td>{{ $usuario->codigo }}</td>
-                                        <td>{{ $usuario->nombre1 }}</td>
-                                        <td>{{ $usuario->nombre2 }}</td>
-                                        <td>{{ $usuario->apellido1 }}</td>
-                                        <td>{{ $usuario->apellido2 }}</td>
-                                        <td>{{ $usuario->rol->nombre }}</td>
-                                        <td>{{ $usuario->tipo->nombre }}</td>
-                                        <td>{{ $usuario->programa->nombre }}</td>
-                                        <td>{{ $usuario->estado->nombre }}</td>
-
-                                    @if($date['hours'] >= 8 && $date['hours'] < 16)
-                                        <td>
-                                            <a href="{{ route('autorizar', $usuario->codigo) }}" class="btn">
-                                                autorizar
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('desautorizar', $usuario->codigo) }}" class="btn grey">
-                                                desautorizar
-                                            </a>
-                                        </td>
-                                    @endif
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                    @else
-                        <center>
-                            <br><br>
-                            <h5 class="truncate grey-text">El votante {{$useri->nombre1}} {{$useri->apellido1}} Vota en la mesa {{$useri->mesa->nombre}}</h5>
+                                        @if($date['hours'] >= 8 && $date['hours'] < 16)
+                                            <td>
+                                                <a href="{{ route('autorizar', $usuario->codigo) }}" class="btn">
+                                                    autorizar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('desautorizar', $usuario->codigo) }}" class="btn grey">
+                                                    desautorizar
+                                                </a>
+                                            </td>
+                                        @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                        @else
+                            <center>
+                                <br><br>
+                                <h5 class="truncate grey-text">El votante {{$useri->nombre1}} {{$useri->apellido1}} Vota en la mesa {{$useri->mesa->nombre}}</h5>
 
 
-                            <br><br>
-                        </center>
-                    @endif
-                </div>
+                                <br><br>
+                            </center>
+                        @endif
+                    </div>
 
-			@else
-				<center>
-					<br><br>
-					<h3 class="truncate grey-text">No hay usuarios en esta mesa</h3>
-					<br><br>
-				</center>
-			@endif
+    		@else
+    				<center>
+    					<br><br>
+    					<h3 class="truncate grey-text">No hay usuarios en esta mesa</h3>
+    					<br><br>
+    				</center>
+    		@endif
+
 		</div>
 	</div>
-	<div class="row center">
-		Crear un Nuevo Usuario
-		<a class="btn btn-floating waves-effect waves-light blue modal-trigger" href="#registro-usuario"><i class="material-icons">add</i></a>
-	</div>
+
 </div>
 
 @endsection
 
 @section('extrabody')
-	@include('template.modules.usuario-registro-modal')
 
-	@include('template.modules.modal-confirmar-eliminacion')
 @endsection
 
 @section('extrajs')

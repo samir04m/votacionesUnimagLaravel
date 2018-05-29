@@ -15,6 +15,8 @@ Route::get('/', 'Controller@mi_login')->name('miLogin');
 
 Route::get('/redireccionar-usuario', 'UsuarioController@redirect')->name('usuario.redirect');
 
+Route::post('/enviar', 'MailController@enviarCertificado')->name('enviarCertificado');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 	Route::get('/', 'AdminController@admin_index')->name('admin.index');

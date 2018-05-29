@@ -67,8 +67,8 @@ class AdminController extends Controller
         $usuario->save();
 
         Session::flash('message', 'Actualizacion exitosa!');
-        // return Redirect::to('/admin');
-        return redirect()->back();
+        return Redirect::to('/admin');
+        // return redirect()->back();
      }
 
      public function usuario_delete($codigo){

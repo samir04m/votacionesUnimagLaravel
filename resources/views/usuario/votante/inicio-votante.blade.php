@@ -60,7 +60,13 @@
 					    <button class="btn-large waves-effect waves-light cyan darken-2 z-depth-4 pulse" id="votar">
 					      	<big><b>votar</b></big>
 					    </button>
-				  </div>
+				  	</div>
+
+				  	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
+				  		 {{ csrf_field() }}
+				  		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
+			  		</form>
+
 				@else
 					<div class="center grey-text darken-5">
 						<br><br>
@@ -70,29 +76,44 @@
 
 			@endif
 
-			@if(Auth::user()->estado_id == 4)
-				<center><h4>Certificado Electoral</h4></center>
-				@include('template.modules.certificado')
-			@endif
 		@endif
-		@if($date['hours'] >= 0 && $date['hours'] < 8)
+
+		@if(Auth::user()->estado_id == 4)
+			<center><h4>Certificado Electoral</h4></center>
+			@include('template.modules.certificado')
+			<form action="{{route('enviarCertificado')}}" method="post" id="formCertificado" class="hide">
+					{{ csrf_field() }}
+					<input type="text" name="useremail" value="{{ Auth::User()->email}}">
+					<input type="text" name="codigo" value="{{ Auth::User()->codigo}}">
+					<input type="text" name="nombre1" value="{{ Auth::User()->nombre1}}">
+					<input type="text" name="apellido1" value="{{ Auth::User()->apellido1}}">
+					<input type="text" name="lugar" value="{{ Auth::User()->mesa->lugar->nombre}}">
+					<input type="text" name="mesa" value="{{ Auth::User()->mesa->nombre}}">
+			</form>
+			<center>
+				<button class="btn blue" id="sendEmail">Enviar a mi correo</button>
+			</center>
+		@else
+
+			@if($date['hours'] >= 0 && $date['hours'] < 8)
 			<div class="card-panel center">
 				<h3>Aun no inician las votaciones</h3>
 				<h5>El horario para votar es de 8 am a 4 pm</h5>
 			</div>
-		@endif
-		@if($date['hours'] >= 16 && $date['hours'] <= 23)
+			@endif
+			@if($date['hours'] >= 16 && $date['hours'] <= 23)
 			<div class="card-panel center">
 				<h3>La votaciones esta cerradas</h3>
 				<h5>A las 4pm finalizo el ciclo de votacion</h5>
 			</div>
+			@endif
 		@endif
+
+
+
 	</div>
 </div>
-	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
-		 {{ csrf_field() }}
-		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
-	</form>
+
 
 @endsection
 
@@ -101,6 +122,10 @@
 
 		$(document).ready(function(){
   			$('.collapsible').collapsible('open', 0);
+
+			$('#sendEmail').click(function(){
+				$('#formCertificado').submit();
+			});
 
   			candidatos_seleccionados = new Object();
 
@@ -138,6 +163,10 @@
 					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')
 				}
 			});
+
+			@if(Session::has('message'))
+		    	Materialize.toast("{{Session::get('message')}}", 3000, 'rounded')
+		    @endif
 
 		});
 
