@@ -4,16 +4,16 @@
 
 @section('content')
 <div class="container">
-    <br><b
+    <br><b>
     <center>
-        <h3>Bienvenido al portal de votaciones unimag 2018</h3>
+        <h4>Bienvenido al portal de votaciones unimag 2018</h4>
         <br>
     </center>
     <div class="container">
         <div class="card-panel center">
             <br><br>
             <big>Aun no sabes cual es tu mesa de votacion?</big>
-            <h4>Consultar Mesa de Cotacion</h4>
+            <h4>Consultar Mesa de Votacion</h4>
             <form action="{{route('buscarMesa')}}" method="post">
                 {{ csrf_field() }}
                 <div class="row">

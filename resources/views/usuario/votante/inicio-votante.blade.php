@@ -16,6 +16,9 @@
 			@endif
 
 			@if(Auth::user()->estado_id == 2 || Auth::user()->estado_id == 3)
+				<div class="right">
+					<h5>{{Auth::User()->mesa->nombre}}</h5>
+				</div>
 				<center><h4>Targetón Electoral</h4></center>
 				@if(count($organos) > 0)
 					<ul class="collapsible popout" data-collapsible="accordion">
@@ -97,14 +100,14 @@
 
 			@if($date['hours'] >= 0 && $date['hours'] < 8)
 			<div class="card-panel center">
-				<h3>Aun no inician las votaciones</h3>
+				<h3>Todavia no inician las votaciones</h3>
 				<h5>El horario para votar es de 8 am a 4 pm</h5>
 			</div>
 			@endif
 			@if($date['hours'] >= 16 && $date['hours'] <= 23)
 			<div class="card-panel center">
 				<h3>La votaciones esta cerradas</h3>
-				<h5>A las 4pm finalizo el ciclo de votacion</h5>
+				<h5>A las 4 pm finalizo el ciclo de votacion</h5>
 			</div>
 			@endif
 		@endif

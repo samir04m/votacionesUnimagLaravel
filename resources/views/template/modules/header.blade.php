@@ -3,7 +3,7 @@
 		<nav class="cyan darken-2">
 			<div class="nav-wrapper">
 				<div class="container">
-					<a href="#" class="brand-logo">@yield('title', '')</a>
+					<a href="{{route('index')}}" class="brand-logo">@yield('title', '')</a>
 					<ul class="right">
 						@if(Auth::user() != null)
 							<li>{{ Auth::user()->codigo }} - {{ Auth::user()->nombre1 }} {{ Auth::user()->apellido1 }}</li>

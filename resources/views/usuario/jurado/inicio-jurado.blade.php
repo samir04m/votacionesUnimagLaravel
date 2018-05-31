@@ -14,17 +14,17 @@
 <div class="container container-fluid">
 
 	<div class="row">
+        @if($date['hours'] >= 0)
+            <div class="card-panel center">
+                <h4>Elecciones Finalizadas</h4>
+                <a href="{{route('resultados')}}" class="btn">Ver resultados</a>
+            </div>
+        @endif
         <a href="{{route('jurado.index')}}" class="btn">Listar Todos</a>
         <div class="right">
             <h5>{{Auth::User()->mesa->nombre}}</h5>
         </div>
 
-        @if($date['hours'] >= 16)
-                <div class="card-panel center">
-                    <h4>Elecciones Finalizadas</h4>
-                    <a href="{{route('resultadosMesa')}}" class="btn">Ver resultados</a>
-                </div>
-        @endif
 
     		@if(count($usuarios) > 0)
                 <div class="col s12">

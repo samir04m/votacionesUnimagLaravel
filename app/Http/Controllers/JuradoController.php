@@ -7,6 +7,7 @@ use Auth;
 use Redirect;
 use App\User;
 use App\Mesa;
+use App\Voto;
 use App\Organo;
 use App\Candidato;
 
@@ -19,7 +20,7 @@ class JuradoController extends Controller
     public function jurado_index(){
         $mesa = Mesa::where('id', Auth::User()->mesa_id)->first();
         $date = getDate();
-         // dd($date['hours']);
+        // dd($mesa->usuarios[0]->rol);
         return view('usuario.jurado.inicio-jurado')->with('usuarios',$mesa->usuarios)->with('date',$date);
     }
 
