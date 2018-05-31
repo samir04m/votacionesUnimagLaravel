@@ -14,7 +14,7 @@
 <div class="container container-fluid">
 
 	<div class="row">
-        @if($date['hours'] >= 0)
+        @if($date['hours'] >= 16)
             <div class="card-panel center">
                 <h4>Elecciones Finalizadas</h4>
                 <a href="{{route('resultados')}}" class="btn">Ver resultados</a>
