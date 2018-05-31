@@ -33,7 +33,6 @@ class AdminController extends Controller
     public function usuario_create(Request $request){
         $usuario = new User($request->all());
         $usuario->password = bcrypt($request->password);
-        $usuario->email = $request->codigo.'@gmail.com';
         $usuario->estado_id = 1;
         // dd($usuario);
         $usuario->save();

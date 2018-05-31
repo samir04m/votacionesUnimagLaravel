@@ -11,7 +11,7 @@
 	</center>
 
 	<div class="row">
-		
+
 		<div class="col s12">
 			@if(count($usuarios) > 0)
 				<table class="responsive-table highlight">
@@ -22,9 +22,9 @@
 							<th>Nombre 2</th>
 							<th>Apellido</th>
 							<th>Apellido 2</th>
+							<th>Email</th>
 							<th>Rol</th>
 							<th>Tipo</th>
-							<th>Programa</th>
 							<th>Mesa</th>
 							<th>Estado</th>
 							<th></th>
@@ -39,9 +39,9 @@
 								<td>{{ $usuario->nombre2 }}</td>
 								<td>{{ $usuario->apellido1 }}</td>
 								<td>{{ $usuario->apellido2 }}</td>
+								<td>{{ $usuario->email }}</td>
 								<td>{{ $usuario->rol->nombre }}</td>
 								<td>{{ $usuario->tipo->nombre }}</td>
-								<td>{{ $usuario->programa->nombre }}</td>
 								<td>{{ $usuario->mesa->nombre }}</td>
 								<td>{{ $usuario->estado->nombre }}</td>
 								<td>
@@ -53,7 +53,7 @@
 									<a href="{{ route('usuario.delete', $usuario->codigo) }}" class="btn red btn-floating btnDelete">
 										<i class="small material-icons">delete_forever</i>
 									</a>
-								</td>	
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -67,8 +67,8 @@
 			@endif
 		</div>
 	</div>
-	<div class="row center"> 
-		Crear un Nuevo Usuario 
+	<div class="row center">
+		Crear un Nuevo Usuario
 		<a class="btn btn-floating waves-effect waves-light blue modal-trigger" href="#registro-usuario"><i class="material-icons">add</i></a>
 	</div>
 </div>
@@ -86,7 +86,7 @@
 		$(document).ready(function(){
 
 		    @if(Session::has('message'))
-		    	Materialize.toast("{{Session::get('message')}}", 3000, 'rounded')	
+		    	Materialize.toast("{{Session::get('message')}}", 3000, 'rounded')
 		    @endif
 
 		 	// $('#registro-usuario').modal('open');

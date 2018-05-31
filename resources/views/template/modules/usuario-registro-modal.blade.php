@@ -24,6 +24,10 @@
 			          <input name="codigo" id="codigo" type="number" required>
 			          <label for="codigo">Codigo</label>
 		        </div>
+                <div class="input-field col s6">
+                     <input name="email" id="email" type="email" required>
+                     <label for="email">Correo</label>
+               </div>
 		        <div class="input-field col s6">
 			          <input name="password" id="password" type="password" required>
 			          <label for="password">Contraseña</label>
@@ -31,7 +35,7 @@
 		        <div class="input-field col s6">
 			          <select name="rol_id" id="rol_id" required>
 			          		@if(isset($datos_select['roles']) && count($datos_select['roles']) > 0)
-								
+
 			          			@foreach($datos_select['roles'] as $rol)
 									<option value="{{$rol->id}}">{{$rol->nombre}}</option>
 								@endforeach
@@ -44,7 +48,7 @@
 		        <div class="input-field col s6">
 			          <select name="programa_id" id="programa_id" required>
 			          		@if(isset($datos_select['programas']) && count($datos_select['programas']) > 0)
-								
+
 			          			@foreach($datos_select['programas'] as $programa)
 									<option value="{{$programa->id}}">{{$programa->nombre}}</option>
 								@endforeach
@@ -57,7 +61,7 @@
 		        <div class="input-field col s6">
 			          <select name="mesa_id" id="mesa_id" required>
 			          		@if(isset($datos_select['mesas']) && count($datos_select['mesas']) > 0)
-								
+
 			          			@foreach($datos_select['mesas'] as $mesa)
 									<option value="{{$mesa->id}}">{{$mesa->nombre}}</option>
 								@endforeach
@@ -70,7 +74,7 @@
 		        <div class="input-field col s6">
 			          <select name="tipo_id" id="tipo_id" required>
 			          		@if(isset($datos_select['tipos']) && count($datos_select['tipos']) > 0)
-								
+
 			          			@foreach($datos_select['tipos'] as $tipo)
 									<option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
 								@endforeach
