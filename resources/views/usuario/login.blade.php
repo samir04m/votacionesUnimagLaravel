@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 
-	<link rel="stylesheet" href="{{ secure_asset('css/materialize.css') }}">
-	<link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+	<link rel="stylesheet" href="{{ sset('css/materialize.css') }}">
+	<link rel="stylesheet" href="{{ sset('css/estilos.css') }}">
 
 </head>
 <body id="index">
@@ -35,27 +35,27 @@
 
 
 							</div>
-							
+
 
 							<div class="card-action center-align blue-grey lighten-4">
 								<button type="submit" name='submit' value="Submit" class="btn btn-large waves-effect waves-light cyan accent-4 hoverable" id="btnLogin">Ingresar</button>
-                                    
+
 							</div>
 						</form>
 
 					</div>
 					<!-- <div class="card-panel grey lighten-4 z-depth-4 hoverable">
-						<a class="" href="{{ route('password.request') }}">	
+						<a class="" href="{{ route('password.request') }}">
 							Olvidastes tu contraseña?
-                        </a>			
+                        </a>
 					</div> -->
 					@if ($errors->has('codigo'))
 						<div class="card-panel red white-text">
                             <strong>{{ $errors->first('codigo') }}</strong>
-							
+
 						</div>
                     @endif
-						
+
 				</div>
 			</div>
 		</div>
@@ -71,13 +71,13 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
-	<script type="text/javascript" src="{{ secure_asset('js/materialize.js') }}"></script>
+	<script type="text/javascript" src="{{ sset('js/jquery-3.3.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ sset('js/materialize.js') }}"></script>
 
 	<script type="text/javascript">
 		$(function(){
-			$('#codigo').val("2015113040");	
-			$('#password').val("1234");	
+			$('#codigo').val("2018110000");
+			$('#password').val("1234");
 		});
 	</script>
 

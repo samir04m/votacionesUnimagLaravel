@@ -40,7 +40,7 @@ class AdminController extends Controller
 
         Session::flash('message', 'Registro exitoso!');
         return Redirect::to('/admin');
-        
+
     }
 
     public function datos_select_usuario(){
@@ -68,6 +68,7 @@ class AdminController extends Controller
 
         Session::flash('message', 'Actualizacion exitosa!');
         return Redirect::to('/admin');
+        // return redirect()->back();
      }
 
      public function usuario_delete($codigo){
@@ -87,6 +88,7 @@ class AdminController extends Controller
 
         Session::flash('message', 'El usuario '.$usuario->codigo.' ahora se encuentra autorizado para votar');
         return Redirect::to('/admin');
+
      }
 
      public function desautorizar_usuario($codigo){

@@ -3,9 +3,10 @@
 @section('title', 'Portal Votante')
 
 @section('content')
-	<div class="container">
+<div class="container">
 
-		<div class="row">
+	<div class="row">
+		@if($date['hours'] >= 8 && $date['hours'] < 16)
 			@if(Auth::user()->estado_id == 1)
 				<div class="center grey-text darken-5">
 					<br><br>
@@ -15,6 +16,9 @@
 			@endif
 
 			@if(Auth::user()->estado_id == 2 || Auth::user()->estado_id == 3)
+				<div class="right">
+					<h5>{{Auth::User()->mesa->nombre}}</h5>
+				</div>
 				<center><h4>Targetón Electoral</h4></center>
 				@if(count($organos) > 0)
 					<ul class="collapsible popout" data-collapsible="accordion">
@@ -30,22 +34,22 @@
 														<img src="{{ asset('imagenes/candidatos/'.$candidato->foto) }}" class="circle responsive-img">
 													</div>
 													<div class="card-stacked">
-														
+
 														<div class="card-content center-align">
-															<div class="candidato-numero center">{{ $candidato->numero }}</div> 
+															<div class="candidato-numero center">{{ $candidato->numero }}</div>
 															<div class="candidato-nombre truncate">
-																{{ $candidato->usuario->nombre1 }} 
+																{{ $candidato->usuario->nombre1 }}
 															 	{{ $candidato->usuario->apellido1 }}
-															 </div> 
-															@if($candidato->usuario->tipo) 
+															 </div>
+															@if($candidato->usuario->tipo)
 																<div class="candidato-tipo grey-text">{{ $candidato->usuario->tipo->nombre }}</div>
 															@endif
 
 														</div>
-													
+
 													</div>
-														
-												
+
+
 												</div>
 							      			</div>
 							      		@endforeach
@@ -59,7 +63,13 @@
 					    <button class="btn-large waves-effect waves-light cyan darken-2 z-depth-4 pulse" id="votar">
 					      	<big><b>votar</b></big>
 					    </button>
-				  </div>
+				  	</div>
+
+				  	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
+				  		 {{ csrf_field() }}
+				  		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
+			  		</form>
+
 				@else
 					<div class="center grey-text darken-5">
 						<br><br>
@@ -69,26 +79,56 @@
 
 			@endif
 
-			@if(Auth::user()->estado_id == 4)
-				<center><h4>Certificado Electoral</h4></center>
-				@include('template.modules.certificado')
-			@endif
-			
+		@endif
 
-		</div>
+		@if(Auth::user()->estado_id == 4)
+			<center><h4>Certificado Electoral</h4></center>
+			@include('template.modules.certificado')
+			<form action="{{route('enviarCertificado')}}" method="post" id="formCertificado" class="hide">
+					{{ csrf_field() }}
+					<input type="text" name="useremail" value="{{ Auth::User()->email}}">
+					<input type="text" name="codigo" value="{{ Auth::User()->codigo}}">
+					<input type="text" name="nombre1" value="{{ Auth::User()->nombre1}}">
+					<input type="text" name="apellido1" value="{{ Auth::User()->apellido1}}">
+					<input type="text" name="lugar" value="{{ Auth::User()->mesa->lugar->nombre}}">
+					<input type="text" name="mesa" value="{{ Auth::User()->mesa->nombre}}">
+			</form>
+			<center>
+				<button class="btn blue" id="sendEmail">Enviar a mi correo</button>
+			</center>
+		@else
+
+			@if($date['hours'] >= 0 && $date['hours'] < 8)
+			<div class="card-panel center">
+				<h3>Todavia no inician las votaciones</h3>
+				<h5>El horario para votar es de 8 am a 4 pm</h5>
+			</div>
+			@endif
+			@if($date['hours'] >= 16 && $date['hours'] <= 23)
+			<div class="card-panel center">
+				<h3>La votaciones esta cerradas</h3>
+				<h5>A las 4 pm finalizo el ciclo de votacion</h5>
+			</div>
+			@endif
+		@endif
+
+
+
 	</div>
-	<form action="{{ route('votante.votar') }}" method="POST" id="candidatosSeleccionados" class="hide">
-		 {{ csrf_field() }}
-		<input type="number" name="mesa_id" value="{{Auth::User()->mesa_id}}">
-	</form>
+</div>
+
 
 @endsection
 
 @section('extrajs')
 	<script type="text/javascript">
-		
+
 		$(document).ready(function(){
   			$('.collapsible').collapsible('open', 0);
+
+			$('#sendEmail').click(function(){
+				$('#formCertificado').submit();
+			});
 
   			candidatos_seleccionados = new Object();
 
@@ -103,7 +143,7 @@
 				}
 				me.addClass('cyan darken-1 white-text');
 				candidatos_seleccionados[organo_id] = candidato_id;
-  				
+
 				console.log(candidatos_seleccionados);
   			});
 
@@ -120,12 +160,16 @@
 						console.log(input);
 						formulario.append(input)
 					}
-				
+
 					formulario.submit();
 				}else{
-					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')	
+					Materialize.toast("Debe votar en cada uno de los organos", 4000, 'rounded')
 				}
 			});
+
+			@if(Session::has('message'))
+		    	Materialize.toast("{{Session::get('message')}}", 3000, 'rounded')
+		    @endif
 
 		});
 
